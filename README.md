@@ -145,7 +145,6 @@ Board configuration:
 |     q|
  ------
 Solution state? true
-
 ```
 
 #### file
@@ -178,7 +177,7 @@ The ```astar``` command performs an A* search for a solution. It will either fin
 ```console
 ./cmddemo/rush_hour.x file ../sample_boards/sample5.txt astar
 ```
-```
+```console
 Board configuration:
  ------ 
 |paaq  |
