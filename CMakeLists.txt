@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.13.4)
 project("RUSH HOUR" LANGUAGES CXX)
 message(STATUS "PROJECT NAME: " ${PROJECT_NAME})
 
-set(VERSION_MAJOR DEVELOPMENT)
+set(VERSION_MAJOR BETA)
 message(STATUS "VERSION: " ${VERSION_MAJOR})
 
 # code language
