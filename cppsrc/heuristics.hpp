@@ -13,7 +13,7 @@
   return:
     0
 */
-auto heuristic0 = [](const Board& board) {
+inline auto heuristic0 = [](const Board& board) {
     return 0;
 };
 
@@ -27,7 +27,7 @@ auto heuristic0 = [](const Board& board) {
   return:
     the calculated manhattan distance
 */
-auto manhattan_distance_1D = [](const Board& board) {
+inline auto manhattan_distance_1D = [](const Board& board) {
     auto goal{board.get_width() - 1};
     auto leading_edge{board.get_vehicles().at(player_vehicle_id).get_x1()};
     return (goal - leading_edge);
@@ -43,7 +43,7 @@ auto manhattan_distance_1D = [](const Board& board) {
   return:
     the calculated number of obstacles
 */
-auto num_obstacles_1D = [](const Board& board) {
+inline auto num_obstacles_1D = [](const Board& board) {
     auto leading_edge{board.get_vehicles().at(player_vehicle_id).get_x1()};
     auto player_vert_pln{board.get_vehicles().at(player_vehicle_id).get_y0()};
     size_t nobstacle{0};
@@ -77,7 +77,7 @@ auto num_obstacles_1D = [](const Board& board) {
   return:
     the manhattan distance + the number of obstacles
 */
-auto player_heuristic = [](const Board& board) {
+inline auto player_heuristic = [](const Board& board) {
     return manhattan_distance_1D(board) + num_obstacles_1D(board);
 };
 
