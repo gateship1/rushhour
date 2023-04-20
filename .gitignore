@@ -1,12 +1,5 @@
 # build files
-build/*
-CMakeFiles/*
-doctest/*
-Testing/*
-cmake_install.cmake
-CMakeCache.txt
-*.tcl
-build/Makefile
+out/*
 
 # executables and libraries
 *.dll
