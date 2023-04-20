@@ -1,0 +1,110 @@
+{
+    "version": 4,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "displayName": "Base",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
+        },
+        {
+            "name": "rush-hour-debug-linux",
+            "displayName": "Rush Hour Debug Build for Linux",
+            "inherits": [ "base" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_CXX_FLAGS": "-std=c++17 -g -Wall -pthread -pedantic -W -Wconversion -Wshadow -Wcast-qual",
+                "CMAKE_CXX_FLAGS_DEBUG": "-O0 -fprofile-arcs -ftest-coverage -fno-exceptions -lgcov"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "rush-hour-debug-windows",
+            "displayName": "Rush Hour Debug Build for Windows",
+            "inherits": [ "base" ],
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "cl",
+                "CMAKE_CXX_FLAGS": "/std:c++17 /Wall /W4",
+                "CMAKE_CXX_FLAGS_DEBUG": "/Od"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+                    "hostOS": [ "Windows" ]
+                }
+            }
+        },
+        {
+            "name": "rush-hour-release-linux",
+            "displayName": "Rush Hour Release Build for Linux",
+            "inherits": [ "rush-hour-debug-linux" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_FLAGS_RELEASE": "-O2"
+            }
+        },
+        {
+            "name": "rush-hour-release-windows",
+            "displayName": "Rush Hour Release Build for Windows",
+            "inherits": [ "rush-hour-debug-windows" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_FLAGS_RELEASE": "/O2"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "rush-hour-debug-linux",
+            "displayName": "rush-hour-debug-linux",
+            "configurePreset": "rush-hour-debug-linux",
+            "verbose": true,
+            "cleanFirst": true
+        },
+        {
+            "name": "rush-hour-debug-windows",
+            "displayName": "rush-hour-debug-windows",
+            "configurePreset": "rush-hour-debug-windows",
+            "verbose": true,
+            "cleanFirst": true
+        },
+        {
+            "name": "rush-hour-release-linux",
+            "displayName": "rush-hour-release-linux",
+            "configurePreset": "rush-hour-release-linux",
+            "verbose": true,
+            "cleanFirst": true
+        },
+        {
+            "name": "rush-hour-release-windows",
+            "displayName": "rush-hour-release-windows",
+            "configurePreset": "rush-hour-release-windows",
+            "verbose": true,
+            "cleanFirst": true
+        }
+    ]
+}
