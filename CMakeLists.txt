@@ -7,4 +7,12 @@ message(STATUS "PROJECT NAME: " ${PROJECT_NAME})
 
 add_subdirectory(src)
 
-add_subdirectory(demos)
+
+if (UNITTEST)
+    add_subdirectory(cmake)
+    add_subdirectory(test)
+endif (UNITTEST)
+
+if (DEMOS)
+    add_subdirectory(demos)
+endif (DEMOS)

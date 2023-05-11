@@ -14,7 +14,15 @@
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": {
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "TRUE",
+                "UNITTEST": {
+                    "type": "BOOL",
+                    "value": "FALSE"
+                },
+                "DEMOS": {
+                    "type": "BOOL",
+                    "value": "FALSE"
+                }
             }
         },
         {
@@ -24,8 +32,12 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_CXX_COMPILER": "g++",
-                "CMAKE_CXX_FLAGS": "-std=c++17 -g -Wall -pthread -pedantic -W -Wconversion -Wshadow -Wcast-qual",
-                "CMAKE_CXX_FLAGS_DEBUG": "-O0 -fprofile-arcs -ftest-coverage -fno-exceptions -lgcov"
+                "CMAKE_CXX_FLAGS": "-std=c++17 -g -pthread -Werror -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wsign-conversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wno-conversion",
+                "CMAKE_CXX_FLAGS_DEBUG": "-O0 -fexceptions -fprofile-arcs -ftest-coverage -lgcov",
+                "UNITTEST": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
             },
             "condition": {
                 "type": "equals",
@@ -68,6 +80,21 @@
             }
         },
         {
+            "name": "rush-hour-linux-demo",
+            "displayName": "Rush Hour Build for Linux with Command Line Demo",
+            "inherits": [ "rush-hour-release-linux" ],
+            "cacheVariables": {
+                "UNITTEST": {
+                    "type": "BOOL",
+                    "value": "FALSE"
+                },
+                "DEMOS": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
+            }
+        },
+        {
             "name": "rush-hour-release-windows",
             "displayName": "Rush Hour Release Build for Windows",
             "inherits": [ "rush-hour-debug-windows" ],
@@ -96,8 +123,15 @@
             "name": "rush-hour-release-linux",
             "displayName": "rush-hour-release-linux",
             "configurePreset": "rush-hour-release-linux",
-            "verbose": true,
+            "verbose": false,
             "cleanFirst": true
+        },
+        {
+            "name": "rush-hour-linux-demo",
+            "displayName": "rush-hour-linux-demo",
+            "configurePreset": "rush-hour-linux-demo",
+            "verbose": false,
+            "cleanFirst": false
         },
         {
             "name": "rush-hour-release-windows",
