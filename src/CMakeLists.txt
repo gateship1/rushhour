@@ -1,15 +1,22 @@
-#[=[ Rush Hour C++ game / AI engine source code #]=]
+#[=[ Rush Hour source code #]=]
 
-add_library(rush_hour_engine STATIC)
+add_subdirectory(GameEngine)
+add_subdirectory(Setup)
+add_subdirectory(Solvers)
 
-target_sources(rush_hour_engine
-    PRIVATE ${CMAKE_CURRENT_LIST_DIR}/board.cpp
-            ${CMAKE_CURRENT_LIST_DIR}/file_input.cpp
-            ${CMAKE_CURRENT_LIST_DIR}/game.cpp
-            ${CMAKE_CURRENT_LIST_DIR}/vehicle.cpp)
+add_library(Game STATIC)
 
-target_include_directories(rush_hour_engine 
+target_sources(Game
+    PRIVATE ${CMAKE_CURRENT_LIST_DIR}/Game.cpp)
+
+target_include_directories(Game 
     PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
-set_target_properties(rush_hour_engine
-    PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+target_link_libraries(Game
+    PUBLIC GameEngine
+           Setup
+           Solvers)
+
+set_target_properties(Game
+    PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+               LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")

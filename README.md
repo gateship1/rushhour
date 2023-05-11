@@ -122,6 +122,10 @@ The source code has been developed for academic purposes, i.e. to explore variou
 
     <br>
 
+* [Googletest](https://github.com/google/googletest)\
+    [Googletest](https://github.com/google/googletest) is used for generating and running test. While this is a necessary dependency, retrieval and building is handled by the `UnitTest.cmake` file. No action is required by as this is all automated. However, because [Googletest](https://github.com/google/googletest) is cloned from its [github](https://github.com/) repository, a stable internet connection is required.
+
+
 \[[toc](#table-of-contents)\]
 
 <br>
@@ -132,14 +136,28 @@ The source code has been developed for academic purposes, i.e. to explore variou
 
 ```console
 RUSHHOUR/
+├── cmake/
+│   └── CMakeLists.txt
 ├── demos/
 │   ├── CMakeLists.txt
 │   └── cmdline/
 │       └── CMakeLists.txt
-├── src/
-│   └── CMakeLists.txt
 ├── sample_boards/
 │   └── README.md
+├── src/
+│   ├── GameEngine/
+│   │   ├── Vehicles/
+│   │   │   ├── PhysicsEngine/
+│   │   │   │   └── CMakeLists.txt
+│   │   │   └── CMakeLists.txt
+│   │   └── CMakeLists.txt
+│   ├── Setup/
+│   │   └── CMakeLists.txt
+│   ├── Solvers/
+│   │   └── CMakeLists.txt
+│   └── CMakeLists.txt
+├── test/
+│   └── CMakeLists.txt
 ├── .gitignore
 ├── CMakeLists.txt
 ├── CMakePresets.json
@@ -150,6 +168,8 @@ To review each directory and file provided in the directory structure in detail,
 
 <details>
 
+<br>
+
 ### `RUSHHOUR` directory (parent directory)
 
 This is the parent directory for the project.
@@ -158,9 +178,31 @@ In addition to the directories described below, the `RUSHHOUR` directory contain
 
 <br>
 
+### `cmake` directory
+
+The `cmake` directory contains the [CMake](https://cmake.org/) include files which are used to both simplify the `CMakeLists.txt` files and to modularize the build system. Each is described briefly in the following.
+
+<br>
+
+#### `InternalHelpers.cmake`
+
+This [CMake](https://cmake.org/) include file contains functions for parsing [CMake](https://cmake.org/) function arguments.
+
+<br>
+
+#### `UnitTest.cmake`
+
+This [CMake](https://cmake.org/) include file handles the retrieval and building of [Googletest](https://github.com/google/googletest) automatically.
+This [CMake](https://cmake.org/) include file also contains the `define_test` function which is used as the template function to create tests with [Googletest](https://github.com/google/googletest).
+
+
+<br>
+
 ### `demos` directory
 
 The `demos` directory contains a single `CMakeLists.txt` file and subdirectories for all of the different types of demos.
+
+<br>
 
 ### `demos/cmdline` directory
 
@@ -173,22 +215,35 @@ The `cmdline` directory contains a `CMakeLists.txt` file which handles compiling
 
 <br>
 
-### `src` directory
-
-The `src` directory is where all of the source code for the rush hour game and AI engine is provided:
-
-* *.h for C++ header files
-* *.cpp for C++ source files
-
-The `src` directory contains a `CMakeLists.txt` file which handles compiling the engine source code into a static library.
-
-<br>
-
 ### `sample_boards` directory
 
 The `sample_boards` directory is where sample board layouts are kept as text files. More details regarding sample boards can be found in the [Run Command Line Demo](#run-command-line-demo) section of this README.
 
 <br>
+
+### `src` directory
+
+The `src` directory is where all of the source code for the rush hour game, solvers, physics, etc. is provided:
+
+* *.hpp for C++ header files
+* *.cpp for C++ source files
+
+The `src` directory contains a `CMakeLists.txt` file which handles compiling the engine source code into a static library. Other subdirectories are located in the `src` directory with thier own `CMakeLists.txt` files for automatic inclusion in a build.
+
+<br>
+
+### `test` directory
+
+The `test` directory is where all of the source code for unit testing the rush hour game, solvers, physics, etc. is provided:
+
+* *.hpp for C++ header files
+* *.cpp for C++ source files
+
+The [googletest](https://github.com/google/googletest) framework is used. It is automatically downloaded and included in the build by CMake.
+
+<br>
+
+
 
 </details>
 <br>
