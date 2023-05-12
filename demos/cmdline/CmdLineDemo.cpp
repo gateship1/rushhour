@@ -151,18 +151,15 @@ void CmdLineDemo::print_result(std::unique_ptr<std::forward_list<std::unique_ptr
     
     std::vector<std::string> board_printout_strs { };
 
-    for (auto& board : *path ) {
-
+    for (auto& board : *path )
         board_printout_strs.emplace_back( board->as_string() );
-
-    }
 
     size_t num_of_rows { 1 };
     if ( board_printout_strs.size() > number_of_boards_per_row )
         num_of_rows += (board_printout_strs.size() / number_of_boards_per_row);
 
     std::vector<std::string> board_super_str { };
-    board_super_str.resize(num_of_rows);
+    board_super_str.resize( num_of_rows );
 
     for (size_t i { 0 }; i < 8; ++i) {
 
@@ -178,7 +175,9 @@ void CmdLineDemo::print_result(std::unique_ptr<std::forward_list<std::unique_ptr
             }
 
         }
-       board_super_str.at(row) += "\n";
+        
+        if ( (board_printout_strs.size() % number_of_boards_per_row) )
+            board_super_str.at(row) += "\n";
 
     }
 

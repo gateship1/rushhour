@@ -56,7 +56,7 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_CXX_COMPILER": "cl",
-                "CMAKE_CXX_FLAGS": "/std:c++17 /Wall /W4",
+                "CMAKE_CXX_FLAGS": "/std:c++17 /W4",
                 "CMAKE_CXX_FLAGS_DEBUG": "/Od"
             },
             "condition": {
@@ -139,6 +139,13 @@
             "configurePreset": "rush-hour-release-windows",
             "verbose": true,
             "cleanFirst": true
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "rush-hour-windows-tests",
+            "displayName": "Unit test Rush Hour with Visual Studio on Windows",
+            "configurePreset": "rush-hour-debug-windows"
         }
     ]
 }
