@@ -57,7 +57,11 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_CXX_COMPILER": "cl",
                 "CMAKE_CXX_FLAGS": "/std:c++17 /W4",
-                "CMAKE_CXX_FLAGS_DEBUG": "/Od"
+                "CMAKE_CXX_FLAGS_DEBUG": "/Od",
+                "UNITTEST": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
             },
             "condition": {
                 "type": "equals",
