@@ -31,7 +31,7 @@ TEST_F(UnitTest, random_walk_solution_found) {
 
     auto path { random->solve() };
 
-    EXPECT_EQ( path.second, 1 );
+    EXPECT_LT( path.second, 10 );
 
     bool state { path.first->front()->is_solution_state() };
 

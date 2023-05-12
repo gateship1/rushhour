@@ -23,8 +23,13 @@ std::unique_ptr<VerticalVehicle> VerticalVehicle::move_up() {
 
 std::forward_list<std::unique_ptr<Vehicle>> VerticalVehicle::move_until_collision_with(const uint64_t& board) {
 
-    std::forward_list<std::unique_ptr<Vehicle>> next_moves_for_vehicle { move_down_until_collision_with(board) };
-    next_moves_for_vehicle.merge( move_up_until_collision_with(board) );
+    std::forward_list<std::unique_ptr<Vehicle>> next_down_moves_for_vehicle { move_down_until_collision_with(board) };
+
+    std::forward_list<std::unique_ptr<Vehicle>> next_moves_for_vehicle { move_up_until_collision_with(board) };
+
+    for (auto& down_move : next_down_moves_for_vehicle) {
+        next_moves_for_vehicle.emplace_front( std::move(down_move) );
+    }
 
     return next_moves_for_vehicle;
 
