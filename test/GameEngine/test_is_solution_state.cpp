@@ -1,11 +1,11 @@
-#include "UnitTest.hpp"
+#include "GameEngineTests.hpp"
 
 #include <memory>
 
 #include "Board.hpp"
 
 
-TEST_F(UnitTest, is_solution_state) {
+TEST_F(GameEngineTests, is_solution_state) {
 
     initialize_solution_board();
     ASSERT_TRUE( game_board->is_solution_state() );

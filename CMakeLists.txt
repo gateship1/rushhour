@@ -1,15 +1,21 @@
-# minimum cmake version required
 cmake_minimum_required(VERSION 3.20.0)
 
-# project name
-project("RUSH HOUR" LANGUAGES CXX)
+project("RUSH HOUR"
+    LANGUAGES CXX)
+
 message(STATUS "PROJECT NAME: " ${PROJECT_NAME})
+
+include(cmake/InternalHelpers.cmake)
+include(cmake/PreventInSourceBuilds.cmake)
+include(cmake/ProjectSettings.cmake)
+include(cmake/ProjectGit.cmake)
 
 add_subdirectory(src)
 
-
 if (UNITTEST)
-    add_subdirectory(cmake)
+    enable_testing()
+    include(cmake/GoogletestHelper.cmake)
+    include(GoogleTest)
     add_subdirectory(test)
 endif (UNITTEST)
 

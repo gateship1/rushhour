@@ -1,9 +1,8 @@
-#include "UnitTest.hpp"
-
 #include "heuristics.hpp"
+#include "SolverTests.hpp"
 
 
-TEST_F(UnitTest, heuristic0) {
+TEST_F(SolverTests, heuristic0) {
 
     ASSERT_EQ( heuristic0(), 0 );
 

@@ -1,9 +1,9 @@
-#include "UnitTest.hpp"
+#include "PhysicsEngineTests.hpp"
 
 #include "collision_detected.hpp"
 
 
-TEST_F(UnitTest, collision_detected) {
+TEST_F(PhysicsEngineTests, collision_detected) {
 
     uint64_t border_bit_board { 0b1111'1111'1000'0001'1000'0001'1000'0000'1000'0001'1000'0001'1000'0001'1111'1111 };
     uint64_t border_collision_left_bit_board { 0b0000'0000'0000'0000'1100'0000'0000'0000'0000'0000'0000'0000'0000'0000'0000'0000 };

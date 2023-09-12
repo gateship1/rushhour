@@ -1,10 +1,7 @@
 #include "AStar.hpp"
-#include "heuristics.hpp"
-#include "Solver.hpp"
-#include "UnitTest.hpp"
+#include "SolverTests.hpp"
 
-
-TEST_F(UnitTest, astar_solution_found) {
+TEST_F(SolverTests, astar_solution_found) {
 
     initialize_default_board();
 
@@ -26,7 +23,7 @@ TEST_F(UnitTest, astar_solution_found) {
 }
 
 
-TEST_F(UnitTest, astar_no_solution) {
+TEST_F(SolverTests, astar_no_solution) {
 
     initialize_no_solution_board();
 

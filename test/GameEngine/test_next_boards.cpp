@@ -1,4 +1,4 @@
-#include "UnitTest.hpp"
+#include "GameEngineTests.hpp"
 
 #include <memory>
 #include <vector>
@@ -20,7 +20,7 @@ void check_next_boards(const std::forward_list<std::unique_ptr<Board>>& next_boa
 }
 
 
-TEST_F(UnitTest, next_boards_default_board) {
+TEST_F(GameEngineTests, next_boards_default_board) {
     
     initialize_default_board();
 
@@ -39,7 +39,7 @@ TEST_F(UnitTest, next_boards_default_board) {
 }
 
 
-TEST_F(UnitTest, next_boards_player_vehicle_only) {
+TEST_F(GameEngineTests, next_boards_player_vehicle_only) {
 
     std::unique_ptr<Vehicle> player_vehicle {
         std::make_unique<PlayerVehicle>(0b0000'0000'0000'0000'0000'0000'0011'0000'0000'0000'0000'0000'0000'0000'0000'0000)
@@ -66,7 +66,7 @@ TEST_F(UnitTest, next_boards_player_vehicle_only) {
 }
 
 
-TEST_F(UnitTest, next_boards_sample_board) {
+TEST_F(GameEngineTests, next_boards_sample_board) {
 
     initialize_sample_board1();
 

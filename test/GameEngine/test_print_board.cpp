@@ -1,4 +1,4 @@
-#include "UnitTest.hpp"
+#include "GameEngineTests.hpp"
 
 #include <string>
 #include <sstream>
@@ -12,7 +12,7 @@
 #include "VerticalVehicle.hpp"
 
 
-TEST_F(UnitTest, print_board) {
+TEST_F(GameEngineTests, print_board) {
 
     initialize_sample_board3();
 
@@ -31,7 +31,7 @@ TEST_F(UnitTest, print_board) {
 }
 
 
-TEST_F(UnitTest, print_default_board) {
+TEST_F(GameEngineTests, print_default_board) {
 
     initialize_default_board();
 

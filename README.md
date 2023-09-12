@@ -16,6 +16,8 @@ The source code has been developed for academic purposes, i.e. to explore variou
 * [Prerequisites](#prerequisites)
 * [Directory Structure](#directory-structure)
 * [Build and Run AI Demo](#build-and-run-ai-demo)
+  * [Build From Source](#build-from-source)
+  * [Build And Run AI Demo](#build-and-run-ai-demo)
 * [Additional Notes](#additional-notes)
 
 <br>
@@ -123,7 +125,7 @@ The source code has been developed for academic purposes, i.e. to explore variou
     <br>
 
 * [Googletest](https://github.com/google/googletest)\
-    [Googletest](https://github.com/google/googletest) is used for generating and running test. While this is a necessary dependency, retrieval and building is handled by the `UnitTest.cmake` file. No action is required by as this is all automated. However, because [Googletest](https://github.com/google/googletest) is cloned from its [github](https://github.com/) repository, a stable internet connection is required.
+    [Googletest](https://github.com/google/googletest) is used for generating and running tests. While this is a necessary dependency, retrieval and building is handled by the `GoogleTestHelper.cmake` file. No action is required by as this is all automated. However, because [Googletest](https://github.com/google/googletest) is cloned from its [github](https://github.com/) repository, a stable internet connection is required.
 
 
 \[[toc](#table-of-contents)\]
@@ -137,7 +139,6 @@ The source code has been developed for academic purposes, i.e. to explore variou
 ```console
 RUSHHOUR/
 ├── cmake/
-│   └── CMakeLists.txt
 ├── demos/
 │   ├── CMakeLists.txt
 │   └── cmdline/
@@ -157,13 +158,25 @@ RUSHHOUR/
 │   │   └── CMakeLists.txt
 │   └── CMakeLists.txt
 ├── test/
+│   ├── GameEngine/
+│   │   ├── Vehicles/
+│   │   │   ├── PhysicsEngine/
+│   │   │   │   └── CMakeLists.txt
+│   │   │   └── CMakeLists.txt
+│   │   └── CMakeLists.txt
+│   ├── Setup/
+│   │   └── CMakeLists.txt
+│   ├── Solvers/
+│   │   └── CMakeLists.txt
 │   └── CMakeLists.txt
 ├── .gitignore
+├── .gitmodules
 ├── CMakeLists.txt
 ├── CMakePresets.json
 ├── LICENSE
 └── README.md
 ```
+
 To review each directory and file provided in the directory structure in detail, review the following Details.
 
 <details>
@@ -172,29 +185,20 @@ To review each directory and file provided in the directory structure in detail,
 
 ### `RUSHHOUR` directory (parent directory)
 
-This is the parent directory for the project.
+This is the `parent` directory for the project.
 
-In addition to the directories described below, the `RUSHHOUR` directory contains a `.gitignore` file, the main (driver) `CMakeLists.txt` file, a `CMakePresets.json` file (which contains each configuration / build / test preset, compiler settings, etc.), and a `README.md` file that contains build instructions (i.e. **this** file).
+In addition to the directories described below, the `parent` directory contains:
+  * a `.gitignore` file,
+  * a `.gitmodules` file (described in more detail in the [Prelude To Madness](#prelude-to-madness) section),
+  * the main (driver) `CMakeLists.txt` file,
+  * a `CMakePresets.json` file (which contains each configuration / build / test preset, compiler settings, etc.), and
+  * a `README.md` file that contains build instructions (i.e. **this** file).
 
 <br>
 
 ### `cmake` directory
 
-The `cmake` directory contains the [CMake](https://cmake.org/) include files which are used to both simplify the `CMakeLists.txt` files and to modularize the build system. Each is described briefly in the following.
-
-<br>
-
-#### `InternalHelpers.cmake`
-
-This [CMake](https://cmake.org/) include file contains functions for parsing [CMake](https://cmake.org/) function arguments.
-
-<br>
-
-#### `UnitTest.cmake`
-
-This [CMake](https://cmake.org/) include file handles the retrieval and building of [Googletest](https://github.com/google/googletest) automatically.
-This [CMake](https://cmake.org/) include file also contains the `define_test` function which is used as the template function to create tests with [Googletest](https://github.com/google/googletest).
-
+The `cmake` directory contains the [CMake](https://cmake.org/) include files which are used to both simplify the `CMakeLists.txt` files and to modularize the build system.
 
 <br>
 
@@ -208,7 +212,7 @@ The `demos` directory contains a single `CMakeLists.txt` file and subdirectories
 
 The `cmdline` directory contains the source code for running demos of the Rush Hour Game / AI engine from the command line:
 
-* *.h for C++ header files
+* *.hpp for C++ header files
 * *.cpp for C++ source files
 
 The `cmdline` directory contains a `CMakeLists.txt` file which handles compiling and linking for the command line demo executable.
@@ -239,11 +243,11 @@ The `test` directory is where all of the source code for unit testing the rush h
 * *.hpp for C++ header files
 * *.cpp for C++ source files
 
-The [googletest](https://github.com/google/googletest) framework is used. It is automatically downloaded and included in the build by CMake.
+The test directory is constructed to mirror the `src` directory so that finding tests for associated functions / routines in the `src` directory should be relatively straightforward.
+
+The [googletest](https://github.com/google/googletest) framework is used. It is automatically downloaded and included in the build by [CMake](https://cmake.org/).
 
 <br>
-
-
 
 </details>
 <br>
@@ -256,7 +260,7 @@ The [googletest](https://github.com/google/googletest) framework is used. It is 
 
 ## Build and Run AI Demo
 
-### Build C++ Source
+### Build From Source
 
 The project uses CMake to generate a build configuration and the Ninja generator to compile the source code (see [Prerequisites](#prerequisites)). The CMake build configuration is controlled by the supplied `CMakePresets.json` file in the ```RUSHHOUR/``` parent directory.
 
@@ -393,6 +397,7 @@ This mode is enabled with the ```file``` command, which is desribed below in gre
 
 <details>
 <summary>print</summary>
+<br>
 
 The ```print``` command prints the initial board configuration to the terminal. For example
 
@@ -414,6 +419,7 @@ and
 ```console
 ./rush_hour_cmdline_demo print "  ooo |ppp q |xx  qa|rrr qa|b c dd|b c ee"
 ```
+
 ```console
 Board configuration:
  ------ 
@@ -425,17 +431,21 @@ Board configuration:
 |b c ee|
  ------
 ```
+
 </details>
 
 <br>
 
 <details>
 <summary>done</summary>
+<br>
 
 The ```done``` command is used to identify if an initial board configuration is in a solution state. For example
+
 ```console
 ./rush_hour_cmdline_demo done
 ```
+
 ```console
 Board configuration:
  ------ 
@@ -448,10 +458,13 @@ Board configuration:
  ------
 Solution state? false
 ```
+
 and
+
 ```console
 ./rush_hour_cmdline_demo done "  oaa |  o   |  o xx|  pppq|     q|     q"
 ```
+
 ```console
 Board configuration:
  ------ 
@@ -471,11 +484,14 @@ Solution state? true
 
 <details>
 <summary>file</summary>
+<br>
 
 The ```file``` command is a special command that is used to read a file that contains an input board configuration and then perform some action. Use of the ```file``` command requires the form
+
 ```console
 ./rush_hour_cmdline_demo file <path/location> <command>
 ```
+
 ```path/location``` is the relative path from the build folder to the text file containing the board configuration, or an absolute path on the user system. Sample board configurations are supplied in the ```sample_boards/``` directory.
 
 ```command``` can be any of the commands listed above, with the exception of ```file``` (for obvious reasons).
@@ -486,6 +502,7 @@ The ```file``` command is a special command that is used to read a file that con
 
 <details>
 <summary>next</summary>
+<br>
 
 The ```next``` command prints all the possible next board states from the initial board state. That is, the set of possible board states that can be reached from the given board state with a  single movement of a single vehicle.
 
@@ -495,6 +512,7 @@ The ```next``` command prints all the possible next board states from the initia
 
 <details>
 <summary>random</summary>
+<br>
 
 The ```random``` command provides a random walk through the next board states. It
 * generates all moves that can be generated can be reached from the given board state with a  single movement of a single vehicle
@@ -510,11 +528,14 @@ It is hard coded for 10 moves, but this can be easily modified, if desired.
 
 <details>
 <summary>astar</summary>
+<br>
 
 The ```astar``` command performs an A* search for a solution. It will either find a solution, print the number of moves it explored whilst searching for the solution, and print the solution path, OR it will fail to find a solution and print the number of moves it explored whilst searching for the solution. An example of an A* run using a sample board is
+
 ```console
 ./rush_hour_cmdline_demo file ../../../../sample_boards/sample5.txt astar
 ```
+
 ```console
 Board configuration:
  ------ 
@@ -538,6 +559,7 @@ Solution path:
 |  rrro| |rrr  o| |rrrq o| |rrrq o| 
  ------   ------   ------   ------  
 ```
+
 The A* routine uses a combination of the manhattan distance and the number of vehicles blocking the player vehicle from exiting the board as its heuristic function.
 
 </details>
@@ -546,6 +568,7 @@ The A* routine uses a combination of the manhattan distance and the number of ve
 
 <details>
 <summary>bfs</summary>
+<br>
 
 The ```bfs``` command performs a breadth-first search for a solution. It will either find a solution, print the number of moves it explored whilst searching for the solution, and print the solution path, OR it will fail to find a solution and print the number of moves it explored whilst searching for the solution. 
 
@@ -555,6 +578,7 @@ The ```bfs``` command performs a breadth-first search for a solution. It will ei
 
 <details>
 <summary>bfs_as_astar</summary>
+<br>
 
 The ```bfs_as_astar``` command performs a breadth-first search for a solution. It calls the A* search algorithm with a heuristic function == 0. It will either find a solution, print the number of moves it explored whilst searching for the solution, and print the solution path, OR it will fail to find a solution and print the number of moves it explored whilst searching for the solution. This is provide to demonstrate the relationship between breadth-first search and A*.
 
@@ -564,6 +588,7 @@ The ```bfs_as_astar``` command performs a breadth-first search for a solution. I
 
 <details>
 <summary>dfs</summary>
+<br>
 
 The ```dfs``` command performs a depth-first search for a solution. It will either find a solution, print the number of moves it explored whilst searching for the solution, and print the solution path, OR it will fail to find a solution and print the number of moves it explored whilst searching for the solution. 
 

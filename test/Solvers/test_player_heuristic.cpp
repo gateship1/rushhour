@@ -1,9 +1,8 @@
-#include "UnitTest.hpp"
-
 #include "heuristics.hpp"
+#include "SolverTests.hpp"
 
 
-TEST_F(UnitTest, player_heuristic_1D) {
+TEST_F(SolverTests, player_heuristic_1D) {
 
     initialize_sample_board3();
     ASSERT_EQ( player_heuristic_1D(game_board), 2 );

@@ -1,18 +1,11 @@
-#include <array>
-#include <filesystem>
-#include <exception>
-#include <fstream>
-#include <string>
-#include <sstream>
-
-#include "UnitTest.hpp"
+#include "SetupTests.hpp"
 
 #include "SetupDefaultBoard.hpp"
 #include "SetupFromCmdLine.hpp"
 #include "SetupFromFile.hpp"
 
 
-TEST_F(UnitTest, default_setup) {
+TEST_F(SetupTests, default_setup) {
 
     SetupDefaultBoard default_board_setup;
     std::unique_ptr<Board> default_board { default_board_setup.build_starting_board() };
@@ -24,7 +17,7 @@ TEST_F(UnitTest, default_setup) {
 }
 
 
-TEST_F(UnitTest, setup_from_cmd_line) {
+TEST_F(SetupTests, setup_from_cmd_line) {
 
     SetupFromCmdLine board_setup("aabbco|d eeco|dfpxxo| fpqqq|  p   |hh    ");
     std::unique_ptr<Board> board { board_setup.build_starting_board() };
@@ -36,7 +29,7 @@ TEST_F(UnitTest, setup_from_cmd_line) {
 }
 
 
-TEST_F(UnitTest, setup_from_cmd_line_no_player_vehicle) {
+TEST_F(SetupTests, setup_from_cmd_line_no_player_vehicle) {
 
     SetupFromCmdLine board_setup("aabbco|d eeco|dfp  o| fpqqq|  p   |hh    ");
     std::string expected_error_printout { "Error: board does not have a player vehicle!" };
@@ -60,7 +53,7 @@ TEST_F(UnitTest, setup_from_cmd_line_no_player_vehicle) {
 }
 
 
-TEST_F(UnitTest, setup_from_cmd_line_empty_board) {
+TEST_F(SetupTests, setup_from_cmd_line_empty_board) {
 
     SetupFromCmdLine board_setup("      |      |      |      |      |      ");
     std::string expected_error_printout { "Error: board is empty!" };
@@ -84,7 +77,7 @@ TEST_F(UnitTest, setup_from_cmd_line_empty_board) {
 }
 
 
-TEST_F(UnitTest, setup_from_cmd_line_malformed_board) {
+TEST_F(SetupTests, setup_from_cmd_line_malformed_board) {
 
     SetupFromCmdLine board_setup("aabbco|d eeco|dfpxxo| fpqqq|  p  |hh    ");
     std::string expected_error_printout { "Error: Malformed board string!" };
@@ -107,7 +100,7 @@ TEST_F(UnitTest, setup_from_cmd_line_malformed_board) {
 }
 
 
-TEST_F(UnitTest, setup_from_file) {
+TEST_F(SetupTests, setup_from_file) {
 
     std::array<std::string, 6> lines {
         "  o aa",
@@ -151,7 +144,7 @@ TEST_F(UnitTest, setup_from_file) {
 }
 
 
-TEST_F(UnitTest, setup_from_file_no_player_vehicle) {
+TEST_F(SetupTests, setup_from_file_no_player_vehicle) {
 
     std::array<std::string, 6> lines {
         "  o aa",
@@ -205,7 +198,7 @@ TEST_F(UnitTest, setup_from_file_no_player_vehicle) {
 }
 
 
-TEST_F(UnitTest, setup_from_file_board_is_empty) {
+TEST_F(SetupTests, setup_from_file_board_is_empty) {
 
     std::array<std::string, 6> lines {
         "      ",
@@ -259,7 +252,7 @@ TEST_F(UnitTest, setup_from_file_board_is_empty) {
 }
 
 
-TEST_F(UnitTest, setup_from_file_malformed_board) {
+TEST_F(SetupTests, setup_from_file_malformed_board) {
 
     std::array<std::string, 6> lines {
         "  o aa",

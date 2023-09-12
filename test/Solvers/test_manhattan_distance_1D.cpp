@@ -1,9 +1,8 @@
-#include "UnitTest.hpp"
-
 #include "heuristics.hpp"
+#include "SolverTests.hpp"
 
 
-TEST_F(UnitTest, manhattan_distance_1D) {
+TEST_F(SolverTests, manhattan_distance_1D) {
 
     initialize_sample_board3();
     ASSERT_EQ( manhattan_distance_1D(game_board), 1 );

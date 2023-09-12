@@ -4,15 +4,16 @@
 #include <memory>
 
 #include "Board.hpp"
-#include "gtest/gtest.h"
-#include "HorizontalVehicle.hpp"
+//#include "HorizontalVehicle.hpp"
 #include "make.hpp"
-#include "PlayerVehicle.hpp"
+//#include "PlayerVehicle.hpp"
 #include "Vehicle.hpp"
-#include "VerticalVehicle.hpp"
+//#include "VerticalVehicle.hpp"
+
+#include "gtest/gtest.h"
 
 
-class UnitTest : public ::testing::Test {
+class RushHourTests : public ::testing::Test {
 
 protected:
 
@@ -28,10 +29,9 @@ protected:
     void initialize_solution_board();
 
 
-
 public:
 
-    virtual void SetUp() {  }
+    virtual void SetUp() { }
 
     virtual void TearDown() { }
 
