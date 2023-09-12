@@ -1,9 +1,8 @@
 #include "BFS.hpp"
-#include "Solver.hpp"
-#include "UnitTest.hpp"
+#include "SolverTests.hpp"
 
 
-TEST_F(UnitTest, bfs_solution_found) {
+TEST_F(SolverTests, bfs_solution_found) {
 
     initialize_default_board();
 
@@ -27,7 +26,7 @@ TEST_F(UnitTest, bfs_solution_found) {
 }
 
 
-TEST_F(UnitTest, bfs_no_solution) {
+TEST_F(SolverTests, bfs_no_solution) {
 
     initialize_no_solution_board();
 

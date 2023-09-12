@@ -1,4 +1,4 @@
-#include "UnitTest.hpp"
+#include "VehiclesTests.hpp"
 
 #include <memory>
 
@@ -7,7 +7,7 @@
 #include "VerticalVehicle.hpp"
 
 
-TEST_F(UnitTest, horizontal_movement) {
+TEST_F(VehiclesTests, horizontal_movement) {
 
     auto horizontal_vehicle {
         std::make_unique<HorizontalVehicle>(0b0000'0000'0000'0000'0000'0000'0011'0000'0000'0000'0000'0000'0000'0000'0000'0000, 'o')
@@ -22,7 +22,7 @@ TEST_F(UnitTest, horizontal_movement) {
 }
 
 
-TEST_F(UnitTest, vertical_movement) {
+TEST_F(VehiclesTests, vertical_movement) {
 
     auto vertical_vehicle {
         std::make_unique<VerticalVehicle>(0b0000'0000'0000'0000'0000'0000'0000'0000'0100'0000'0100'0000'0000'0000'0000'0000, 'd')
@@ -37,7 +37,7 @@ TEST_F(UnitTest, vertical_movement) {
 }
 
 
-TEST_F(UnitTest, next_moves_vertical) {
+TEST_F(VehiclesTests, next_moves_vertical) {
 
     auto vertical_vehicle1 {
         std::make_unique<VerticalVehicle>(0b0000'0000'0000'0000'0000'0000'0001'0000'0001'0000'0000'0000'0000'0000'0000'0000, 'a')
@@ -74,7 +74,7 @@ TEST_F(UnitTest, next_moves_vertical) {
 }
 
 
-TEST_F(UnitTest, next_moves_horizontal) {
+TEST_F(VehiclesTests, next_moves_horizontal) {
 
     auto horizontal_vehicle1 {
         std::make_unique<HorizontalVehicle>(0b0000'0000'0000'0000'0001'1100'0000'0000'0000'0000'0000'0000'0000'0000'0000'0000, 'a')
@@ -111,7 +111,7 @@ TEST_F(UnitTest, next_moves_horizontal) {
 }
 
 
-TEST_F(UnitTest, next_moves_player) {
+TEST_F(VehiclesTests, next_moves_player) {
 
     auto player_vehicle {
         std::make_unique<PlayerVehicle>(0b0000'0000'0000'0000'0000'0000'0000'0110'0000'0000'0000'0000'0000'0000'0000'0000)

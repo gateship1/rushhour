@@ -33,16 +33,24 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_CXX_COMPILER": "g++",
                 "CMAKE_CXX_FLAGS": "-std=c++17 -g -pthread -Werror -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wsign-conversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wno-conversion",
-                "CMAKE_CXX_FLAGS_DEBUG": "-O0 -fexceptions -fprofile-arcs -ftest-coverage -lgcov",
-                "UNITTEST": {
-                    "type": "BOOL",
-                    "value": "TRUE"
-                }
+                "CMAKE_CXX_FLAGS_DEBUG": "-O0"
             },
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
                 "rhs": "Linux"
+            }
+        },
+        {
+            "name": "rush-hour-debug-linux-wtests",
+            "displayName": "Rush Hour Debug Build for Linux with unit testing",
+            "inherits": [ "rush-hour-debug-linux" ],
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS_DEBUG": "-O0 -fexceptions -fprofile-arcs -ftest-coverage -lgcov",
+                "UNITTEST": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
             }
         },
         {
@@ -57,11 +65,7 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_CXX_COMPILER": "cl",
                 "CMAKE_CXX_FLAGS": "/std:c++17 /W4",
-                "CMAKE_CXX_FLAGS_DEBUG": "/Od",
-                "UNITTEST": {
-                    "type": "BOOL",
-                    "value": "TRUE"
-                }
+                "CMAKE_CXX_FLAGS_DEBUG": "/Od"
             },
             "condition": {
                 "type": "equals",
@@ -71,6 +75,17 @@
             "vendor": {
                 "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
                     "hostOS": [ "Windows" ]
+                }
+            }
+        },
+        {
+            "name": "rush-hour-debug-windows-wtests",
+            "displayName": "Rush Hour Debug Build for Windows with unit testing",
+            "inherits": [ "rush-hour-debug-windows" ],
+            "cacheVariables": {
+                "UNITTEST": {
+                    "type": "BOOL",
+                    "value": "TRUE"
                 }
             }
         },
@@ -88,10 +103,6 @@
             "displayName": "Rush Hour Build for Linux with Command Line Demo",
             "inherits": [ "rush-hour-release-linux" ],
             "cacheVariables": {
-                "UNITTEST": {
-                    "type": "BOOL",
-                    "value": "FALSE"
-                },
                 "DEMOS": {
                     "type": "BOOL",
                     "value": "TRUE"
@@ -114,14 +125,28 @@
             "displayName": "rush-hour-debug-linux",
             "configurePreset": "rush-hour-debug-linux",
             "verbose": true,
-            "cleanFirst": true
+            "cleanFirst": false
+        },
+        {
+            "name": "rush-hour-debug-linux-wtests",
+            "displayName": "rush-hour-debug-linux-wtests",
+            "configurePreset": "rush-hour-debug-linux-wtests",
+            "verbose": true,
+            "cleanFirst": false
         },
         {
             "name": "rush-hour-debug-windows",
             "displayName": "rush-hour-debug-windows",
             "configurePreset": "rush-hour-debug-windows",
             "verbose": true,
-            "cleanFirst": true
+            "cleanFirst": false
+        },
+        {
+            "name": "rush-hour-debug-windows-wtests",
+            "displayName": "rush-hour-debug-windows-wtests",
+            "configurePreset": "rush-hour-debug-windows-wtests",
+            "verbose": true,
+            "cleanFirst": false
         },
         {
             "name": "rush-hour-release-linux",
@@ -146,6 +171,11 @@
         }
     ],
     "testPresets": [
+        {
+            "name": "rush-hour-linux-tests",
+            "displayName": "Unit test Rush Hour on Linux OS",
+            "configurePreset": "rush-hour-debug-windows"
+        },
         {
             "name": "rush-hour-windows-tests",
             "displayName": "Unit test Rush Hour with Visual Studio on Windows",

@@ -1,9 +1,9 @@
-#include "UnitTest.hpp"
+#include "GameEngineTests.hpp"
 
 #include "defines.hpp"
 
 
-TEST_F(UnitTest, get_board_state) {
+TEST_F(GameEngineTests, get_board_state) {
 
     initialize_default_board();
     initialize_sample_board1();
@@ -12,7 +12,7 @@ TEST_F(UnitTest, get_board_state) {
 }
 
 
-TEST_F(UnitTest, get_state_of_vehicle) {
+TEST_F(GameEngineTests, get_state_of_vehicle) {
 
     initialize_sample_board3();
 
@@ -21,7 +21,7 @@ TEST_F(UnitTest, get_state_of_vehicle) {
 }
 
 
-TEST_F(UnitTest, get_board_state_wout_vehicle) {
+TEST_F(GameEngineTests, get_board_state_wout_vehicle) {
 
     initialize_sample_board3();
 

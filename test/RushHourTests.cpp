@@ -1,14 +1,14 @@
-#include "UnitTest.hpp"
+#include "RushHourTests.hpp"
 
 
-void UnitTest::check_board_state(const std::unique_ptr<Board>& board, const uint64_t& initial_board_state) {
+void RushHourTests::check_board_state(const std::unique_ptr<Board>& board, const uint64_t& initial_board_state) {
 
     ASSERT_EQ(board->get_state(), initial_board_state);
 
 }
 
 
-void UnitTest::initialize_default_board() {
+void RushHourTests::initialize_default_board() {
 
     std::unique_ptr<Vehicle> player_vehicle {
         std::make_unique<PlayerVehicle>(0b0000'0000'0000'0000'0000'0000'0110'0000'0000'0000'0000'0000'0000'0000'0000'0000)
@@ -39,7 +39,7 @@ void UnitTest::initialize_default_board() {
 }
 
 
-void UnitTest::initialize_no_solution_board() {
+void RushHourTests::initialize_no_solution_board() {
 
 
     std::unique_ptr<Vehicle> player_vehicle {
@@ -62,7 +62,7 @@ void UnitTest::initialize_no_solution_board() {
 }
 
 
-void UnitTest::initialize_sample_board1() {
+void RushHourTests::initialize_sample_board1() {
 
     std::unique_ptr<Vehicle> truck_o {
         std::make_unique<HorizontalVehicle>(0b0000'0000'0001'1100'0000'0000'0000'0000'0000'0000'0000'0000'0000'0000'0000'0000, 'o')
@@ -107,7 +107,7 @@ void UnitTest::initialize_sample_board1() {
 }
 
 
-void UnitTest::initialize_sample_board3() {
+void RushHourTests::initialize_sample_board3() {
 
     std::unique_ptr<Vehicle> player_vehicle {
         std::make_unique<PlayerVehicle>(0b0000'0000'0000'0000'0000'0000'0000'1100'0000'0000'0000'0000'0000'0000'0000'0000)
@@ -157,7 +157,7 @@ void UnitTest::initialize_sample_board3() {
 }
 
 
-void UnitTest::initialize_solution_board() {
+void RushHourTests::initialize_solution_board() {
 
     std::unique_ptr<Vehicle> player_vehicle {
         std::make_unique<PlayerVehicle>(0b0000'0000'0000'0000'0000'0000'0000'0110'0000'0000'0000'0000'0000'0000'0000'0000)

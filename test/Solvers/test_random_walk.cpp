@@ -4,11 +4,10 @@
 #include "RandomWalk.hpp"
 #include "SetupDefaultBoard.hpp"
 #include "SetupFromCmdLine.hpp"
-#include "Solver.hpp"
-#include "UnitTest.hpp"
+#include "SolverTests.hpp"
 
 
-TEST_F(UnitTest, random_walk_solution_found) {
+TEST_F(SolverTests, random_walk_solution_found) {
 
     SetupFromCmdLine board_setup("  o aa|  o   |  oxx |ppp  q|     q|     q");
     std::unique_ptr<Board> board { board_setup.build_starting_board() };
@@ -44,7 +43,7 @@ TEST_F(UnitTest, random_walk_solution_found) {
 }
 
 
-TEST_F(UnitTest, random_walk_solution_not_found) {
+TEST_F(SolverTests, random_walk_solution_not_found) {
 
     SetupDefaultBoard board_setup;
     std::unique_ptr<Board> board { board_setup.build_starting_board() };

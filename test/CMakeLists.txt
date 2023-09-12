@@ -1,33 +1,31 @@
-define_test(TEST_NAME unittests
-    TEST_DESCRIPTION "Unit test all functions"
-    TEST_FILES ${CMAKE_CURRENT_LIST_DIR}/test_astar.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_bfs.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_collision_detected.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_dfs.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_driver.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_get_board_states.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_heuristic0.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_manhattan_distance_1D.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_is_solution_state.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_movement.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_next_boards.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_number_of_obstacles_1D.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_player_heuristic.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_print_board.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_random_walk.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/test_setup.cpp
-               ${CMAKE_CURRENT_LIST_DIR}/UnitTest.cpp
-    INCLUDE_DIRS $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
-                 $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src/GameEngine>
-                 $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src/GameEngine/Vehicles>
-                 $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src/GameEngine/Vehicles/PhysicsEngine>
-                 $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src/Setup>
-                 $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src/Solvers>
-                 $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/test>
-    LIBRARIES Game
-              GameEngine
-              PhysicsEngine
-              Setup
-              Solvers
-              Vehicles
-)
+cmake_minimum_required(VERSION 3.20.0)
+
+message(STATUS "Added sub_directory: ${CMAKE_CURRENT_LIST_DIR}")
+
+project(test_RushHour
+    LANGUAGES CXX)
+
+add_executable(${PROJECT_NAME})
+
+target_include_directories(${PROJECT_NAME}
+    PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+    
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE GameEngine
+            Vehicles
+            gtest_main)
+
+target_sources(${PROJECT_NAME}
+    PRIVATE RushHourTests.cpp)
+
+add_subdirectory(GameEngine)
+add_subdirectory(GameEngine/Vehicles)
+add_subdirectory(GameEngine/Vehicles/PhysicsEngine)
+add_subdirectory(Setup)
+add_subdirectory(Solvers)
+    
+gtest_add_tests(
+    TARGET     ${PROJECT_NAME}
+    TEST_LIST  RushHour_AllTests)
+    
+set_tests_properties(${RushHour_AllTests}   PROPERTIES TIMEOUT 10)
