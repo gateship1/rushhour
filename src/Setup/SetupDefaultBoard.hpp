@@ -14,6 +14,8 @@ public:
 
     SetupDefaultBoard(const SetupDefaultBoard&) = delete;
     SetupDefaultBoard(SetupDefaultBoard&&) = delete;
+    SetupDefaultBoard& operator=(const SetupDefaultBoard&) = delete;
+    SetupDefaultBoard& operator=(SetupDefaultBoard&&) = delete;
 
     virtual std::unique_ptr<Board> build_starting_board() override final;
 

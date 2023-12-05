@@ -15,6 +15,8 @@ public:
 
     AStar(const AStar&) = delete;
     AStar(AStar&&) = delete;
+    AStar& operator=(const AStar&) = delete;
+    AStar& operator=(AStar&&) = delete;
 
     virtual std::pair<std::unique_ptr<std::forward_list<std::unique_ptr<Board>>>, size_t> solve() override final;
 

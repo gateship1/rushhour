@@ -15,6 +15,8 @@ public:
 
     SetupFromFile(const SetupFromFile&) = delete;
     SetupFromFile(SetupFromFile&&) = delete;
+    SetupFromFile& operator=(const SetupFromFile&) = delete;
+    SetupFromFile& operator=(SetupFromFile&&) = delete;
 
     virtual std::unique_ptr<Board> build_starting_board() override;
 

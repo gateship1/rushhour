@@ -25,6 +25,8 @@ public:
 
     Vehicle(const Vehicle&) = delete;
     Vehicle(Vehicle&&) = delete;
+    Vehicle& operator=(const Vehicle&) = delete;
+    Vehicle& operator=(Vehicle&&) = delete;
 
     virtual std::array<std::unique_ptr<Vehicle>, 2> next_moves() = 0;
     virtual std::forward_list<std::unique_ptr<Vehicle>> move_until_collision_with(const uint64_t& board) = 0;

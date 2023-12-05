@@ -14,6 +14,8 @@ public:
 
     DFS(const DFS&) = delete;
     DFS(DFS&&) = delete;
+    DFS& operator=(const DFS&) = delete;
+    DFS& operator=(DFS&&) = delete;
 
     virtual std::pair<std::unique_ptr<std::forward_list<std::unique_ptr<Board>>>, size_t> solve() override final;
 

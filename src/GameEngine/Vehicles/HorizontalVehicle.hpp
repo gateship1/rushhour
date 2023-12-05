@@ -13,6 +13,8 @@ public:
 
     HorizontalVehicle(const HorizontalVehicle&) = delete;
     HorizontalVehicle(HorizontalVehicle&&) = delete;
+    HorizontalVehicle& operator=(const HorizontalVehicle&) = delete;
+    HorizontalVehicle& operator=(HorizontalVehicle&&) = delete;
 
     std::unique_ptr<HorizontalVehicle> move_left();
     std::unique_ptr<HorizontalVehicle> move_right();

@@ -19,6 +19,8 @@ public:
 
     CmdLineDemo(const CmdLineDemo&) = delete;
     CmdLineDemo(CmdLineDemo&&) = delete;
+    CmdLineDemo& operator=(const CmdLineDemo&) = delete;
+    CmdLineDemo& operator=(CmdLineDemo&&) = delete;
 
     void run();
 
