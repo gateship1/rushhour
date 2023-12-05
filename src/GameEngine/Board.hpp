@@ -20,6 +20,8 @@ public:
 
     Board(const Board&) = delete;
     Board(Board&&) = delete;
+    Board& operator=(const Board&) = delete;
+    Board& operator=(Board&&) = delete;
 
     std::string as_string() const;
     uint64_t get_state() const;

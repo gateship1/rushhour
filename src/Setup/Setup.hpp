@@ -20,6 +20,8 @@ public:
 
     Setup(const Setup&) = delete;
     Setup(Setup&&) = delete;
+    Setup& operator=(const Setup&) = delete;
+    Setup& operator=(Setup&&) = delete;
 
     virtual std::unique_ptr<Board> build_starting_board() = 0;
 

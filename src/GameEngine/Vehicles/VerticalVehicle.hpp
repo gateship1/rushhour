@@ -12,6 +12,8 @@ public:
 
     VerticalVehicle(const VerticalVehicle&) = delete;
     VerticalVehicle(VerticalVehicle&&) = delete;
+    VerticalVehicle& operator=(const VerticalVehicle&) = delete;
+    VerticalVehicle& operator=(VerticalVehicle&&) = delete;
 
     std::unique_ptr<VerticalVehicle> move_down();
     std::unique_ptr<VerticalVehicle> move_up();

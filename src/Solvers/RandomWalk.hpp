@@ -16,6 +16,8 @@ public:
 
     RandomWalk(const RandomWalk&) = delete;
     RandomWalk(RandomWalk&&) = delete;
+    RandomWalk& operator=(const RandomWalk&) = delete;
+    RandomWalk& operator=(RandomWalk&&) = delete;
 
     virtual std::pair<std::unique_ptr<std::forward_list<std::unique_ptr<Board>>>, size_t> solve() override final;
 

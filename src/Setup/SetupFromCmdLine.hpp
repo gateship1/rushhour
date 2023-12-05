@@ -14,6 +14,8 @@ public:
 
     SetupFromCmdLine(const SetupFromCmdLine&) = delete;
     SetupFromCmdLine(SetupFromCmdLine&&) = delete;
+    SetupFromCmdLine& operator=(const SetupFromCmdLine&) = delete;
+    SetupFromCmdLine& operator=(SetupFromCmdLine&&) = delete;
 
     static std::string clean_board_string(const std::string& board_string);
 

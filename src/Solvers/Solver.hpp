@@ -18,6 +18,8 @@ public:
 
     Solver(const Solver&) = delete;
     Solver(Solver&&) = delete;
+    Solver& operator=(const Solver&) = delete;
+    Solver& operator=(Solver&&) = delete;
 
     virtual std::pair<std::unique_ptr<std::forward_list<std::unique_ptr<Board>>>, size_t> solve() = 0;
 

@@ -12,6 +12,8 @@ public:
 
     PlayerVehicle(const PlayerVehicle&) = delete;
     PlayerVehicle(PlayerVehicle&&) = delete;
+    PlayerVehicle& operator=(const PlayerVehicle&) = delete;
+    PlayerVehicle& operator=(PlayerVehicle&&) = delete;
 
     std::unique_ptr<PlayerVehicle> move_left();
     std::unique_ptr<PlayerVehicle> move_right();

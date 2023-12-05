@@ -18,6 +18,8 @@ public:
 
     Game(const Game&) = delete;
     Game(Game&&) = delete;
+    Game& operator=(const Game&) = delete;
+    Game& operator=(Game&&) = delete;
 
     virtual void play() = 0;
 
